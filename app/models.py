@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, related_name="category_topics")
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, related_name="category_topics", blank=True)
     slug = models.TextField()
     description = models.TextField()
     body = models.TextField()
