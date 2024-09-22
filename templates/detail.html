@@ -83,7 +83,29 @@
 
                         <div class="col-lg-5 col-12">
                             <div class="topics-detail-block bg-white shadow-lg">
-                                <img src="{{ topic.image1.url }}" class="topics-detail-block-image img-fluid">
+                              {% if topic.youtube_url %}
+                                {% if "youtu.be" in topic.youtube_url %}
+                                    {% with video_id=topic.youtube_url|cut:"https://youtu.be/" %}
+                                        <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/{{ video_id }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                        </iframe>
+                                    {% endwith %}
+                                {% else %}
+                                    {% if "youtube.com/watch?v=" in topic.youtube_url %}
+                                        {% with video_id=topic.youtube_url|cut:"https://www.youtube.com/watch?v=" %}
+                                            <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/{{ video_id }}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen>
+                                            </iframe>
+                                        {% endwith %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
                             </div>
                         </div>
 

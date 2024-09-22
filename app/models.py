@@ -17,6 +17,7 @@ class Topic(models.Model):
     image1 = models.ImageField(upload_to='images/', blank=True, null=True)
     image2 = models.ImageField(upload_to='images/', blank=True, null=True)
     image3 = models.ImageField(upload_to='images/', blank=True, null=True)
+    youtube_url = models.URLField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
